@@ -3,14 +3,16 @@ About
 A minecraft server made simple for linux
 This a simple GUI based minecraft server setup.
 
-Run for first time
+Install
+--------
+```shell
+git clone https://github.com/JudgeGlass/AutoServer.git
+chmod +x Menu.sh
+sudo ./Menu.sh
+```
+
+Run
 ------------------
 ```shell
- chmod +x Configure.sh
- sudo ./Configure.sh
+ ./Menu.sh
  ```
-Run after config(every time you want to run)
---------------------------------------------
-```shell
-./Menu.sh
-```
