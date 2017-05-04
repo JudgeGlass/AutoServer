@@ -30,6 +30,8 @@ configure(){
 		echo "Changing File Permissions..."
 		{
 			chmod +x *.sh
+			chmod -R 777 $PWD
+			chmod -R 777 $PWD/*
 		} &> /dev/null
 		sleep 0.6
 		echo 100
