@@ -1,26 +1,38 @@
 #!/bin/bash
 #!/bin/sh
 
+CONF=ServerSetup.conf
+
 configure(){
 	{
+		echo "Insalling Java..."
 		{
 			apt install openjdk-8-jre -y
 		} &> /dev/null
 		echo 50
+		echo "Getting Minecraft Jar Files..."
 		{
-                        wget https://s3.amazonaws.com/Minecraft.Download/versions/1.11.2/minecraft_server.1.11.2.jar
+			while IFS= read -r line
+			do
+					echo "$line"
+					URL=$line
+			done < "$CONF"
+                        wget $URL
                 } &> /dev/null
 		echo 70
+		echo "Test Launching Jar"
 		{
-			java -jar minecraft_server.1.11.2.jar
+			java -jar minecraft_server* nogui
 		} &> /dev/null
 		echo 90
+		echo "Changing File Permissions..."
 		{
 			chmod +x *.sh
 		} &> /dev/null
+		sleep 0.6
 		echo 100
 		sleep 1
-	} | whiptail --title "Configuring" --gauge "Please wait. This may take awhile..." 6 60 0 
+	} | whiptail --title " Configuring " --gauge "Please wait. This may take awhile..." 6 60 0 
 	if (whiptail --title "Minecraft EULA" --yesno "Do you accept the Minecraft EULA?\nVisit https://account.mojang.com/documents/minecraft_eula" 8 78) then
 		sed -i -e "s/\(eula=\).*/\1true/" eula.txt
 		./Menu.sh
