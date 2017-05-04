@@ -21,7 +21,7 @@ configure(){
 		echo 100
 		sleep 1
 	} | whiptail --title "Configuring" --gauge "Please wait. This may take awhile..." 6 60 0 
-	if (whiptail --title "Minecraft EULA" --yesno "Do you accept the Minecraft EULA?" 8 78) then
+	if (whiptail --title "Minecraft EULA" --yesno "Do you accept the Minecraft EULA?\nVisit https://account.mojang.com/documents/minecraft_eula" 8 78) then
 		sed -i -e "s/\(eula=\).*/\1true/" eula.txt
 		./Menu.sh
 	else
