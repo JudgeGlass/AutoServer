@@ -4,12 +4,19 @@
 worldDir=world
 URL=$?
 jarName=$?
+RAM=$(sed '2q;d' Config.conf)
 
 menu(){
+	CONF=$(sed '1q;d' Config.conf)
+	if [ $CONF != "CONFIGURE=true" ]; then
+		whiptail --title "Config" --msgbox "You need to run the configuratio" 8 78
+		chmod +x Configure.sh
+		sudo ./Configure.sh
+	fi
 	while [ 1 ]
 	do
 	CHOICE=$(
-	whiptail --backtitle "v0.0.1" --title  "Minecraft Server Menu" --menu "Choose an option" 25 65 16 \
+	whiptail --backtitle "v0.0.2" --title  "Minecraft Server Menu" --menu "Choose an option" --nocancel 25 65 16 \
 		"Start Server" "Makes a minecraft world and starts the server" \
 		"Delete World" "Remove minecraft world" \
 		"Settings" "Server Settings" \
@@ -22,12 +29,12 @@ menu(){
 			if [ -d $worldDir ]; then
 				clear
                                 echo "Please wait..."
-				java -Xmx1G -Xms1G -jar minecraft_server* nogui
+				java -Xmx"${RAM: -1}"G -Xms"${RAM: -1}"G -jar minecraft_server* nogui
 			fi
 			if [ ! -d "$worldDir" ];  then
 				whiptail --title "World" --msgbox "A new world will now be made." 8 78
 				clear
-				java  -Xmx1G -Xms1G -jar minecraft_server* nogui
+				java  -Xmx"${RAM: -1}"G -Xms"${RAM: -1}"G -jar minecraft_server* nogui
 			fi
 		;;
 		"Delete World")
