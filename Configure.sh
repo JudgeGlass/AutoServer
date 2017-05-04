@@ -12,7 +12,7 @@ configure(){
                 } &> /dev/null
 		echo 70
 		{
-			/opt/Java/jdk1.8.0_131/bin/java -jar minecraft_server.1.11.2.jar
+			java -jar minecraft_server.1.11.2.jar
 		} &> /dev/null
 		echo 90
 		{
