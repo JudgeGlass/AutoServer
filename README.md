@@ -7,6 +7,7 @@ Install
 --------
 ```shell
 git clone https://github.com/JudgeGlass/AutoServer.git
+cd AutoServer
 chmod +x Menu.sh
 sudo ./Menu.sh
 ```
