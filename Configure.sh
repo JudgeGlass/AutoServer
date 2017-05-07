@@ -4,6 +4,12 @@
 CONF=ServerSetup.conf
 
 configure(){
+	CONF=$(sed "1q;d" Config.conf)
+        if [ $CONF  = "CONFIGURE=true" ]; then
+                whiptail --title "Config" --msgbox "You already ran this!" 8 78
+                exit
+        fi
+	
 	apt update -y
 	apt upgrade -y
 	{
@@ -40,7 +46,6 @@ configure(){
 	if (whiptail --title "Minecraft EULA" --yesno "Do you accept the Minecraft EULA?\nVisit https://account.mojang.com/documents/minecraft_eula" 8 78) then
 		sed -i -e "s/\(eula=\).*/\1true/" eula.txt
 		sed -i -e "s/\(CONFIGURE=\).*/\1true/" Config.conf
-		./Menu.sh
 	else
 		whiptail --title "Minecraft EULA" --msgbox "You can not continue unless you accept the eula" 8 78
 		exit
