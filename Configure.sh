@@ -4,8 +4,8 @@
 CONF=ServerSetup.conf
 
 configure(){
-	CONF=$(sed "1q;d" Config.conf)
-        if [ $CONF  = "CONFIGURE=true" ]; then
+	CONFIG=$(sed "1q;d" Config.conf)
+        if [ $CONFIG  = "CONFIGURE=true" ]; then
                 whiptail --title "Config" --msgbox "You already ran this!" 8 78
                 exit
         fi
