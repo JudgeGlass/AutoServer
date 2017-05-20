@@ -47,25 +47,26 @@ menu(){
 			./Settings.sh
 		;;
 		"Update")
-			{
-				while IFS= read -r line
-				do
-					echo "$line"
-					URL=$line
-				done < "ServerSetup.conf"
-				echo 30
-				sleep .2
-				rm minecraft_server*
-				echo 60
-				sleep .2
-				{
-					wget $URL
-				} &> /dev/null
-				echo 100
-				jarName="${URL##*/}"
-				sleep 2
-			} | whiptail --title "Update" --gauge "Getting update. Please wait..." 6 60 0
-			whiptail --title "Update" --msgbox "Update installed!\nNOTE:it may have not gotten an update at all if one was not availible" 8 78
+                                exitstatus=$?
+                                if [ $exitstatus = 1 ]; then
+                                        exit
+                                else
+                                        {
+                                        echo 30
+                                        sleep .2
+                                        rm minecraft_server*
+                                        echo 60
+                                        sleep .2
+                                        {
+                                                wget $URL
+                                        } &> /dev/null
+                                        echo 100
+                                        jarName="${URL##*/}"
+                                        sleep 2
+                                        } | whiptail --title "Update" --gauge "Getting update. Please wait..." 6 60 0
+                                        whiptail --title "Update" --msgbox "Update installed!\nNOTE:it may have not gotten an update at all if one was not availible" 8 78
+                                fi
+
 		;;
 		"Exit")
 			exit
