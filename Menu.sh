@@ -47,6 +47,7 @@ menu(){
 			./Settings.sh
 		;;
 		"Update")
+				URL=$(whiptail --inputbox "Enter a the latest Minecraft.jar URL. You can find it on the minecraft website" 8 78  --title "Update" 3>&1 1>&2 2>&3)
                                 exitstatus=$?
                                 if [ $exitstatus = 1 ]; then
                                         exit
