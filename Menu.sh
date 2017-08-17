@@ -9,7 +9,7 @@ RAM=$(sed '2q;d' Config.conf)
 menu(){
 	CONF=$(sed '1q;d' Config.conf)
 	if [ $CONF != "CONFIGURE=true" ]; then
-		whiptail --title "Config" --msgbox "You need to run the configuration" 8 78
+		whiptail --title "Config" --msgbox "You need to run the configuration\nNOTE: Does not work on ARM devices like the raspberry pi\nwithout user modification" 8 78
 		chmod +x Configure.sh
 		sudo ./Configure.sh
 	fi
