@@ -23,7 +23,6 @@ menu(){
 		"Update" "Update Server" \
 		"Exit" "Exits Menu" 3>&2 2>&1 1>&3
 	)
-	option=$(echo $choice | tr '[:upper:]' '[:lower:]' | sed 's/ //g')
 	case $CHOICE in
 		"Start Server")
 			if [ -d $worldDir ]; then
