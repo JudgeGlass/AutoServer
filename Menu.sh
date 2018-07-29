@@ -28,12 +28,12 @@ menu(){
 			if [ -d $worldDir ]; then
 				clear
                                 echo "Please wait..."
-				java -Xmx"${RAM: -1}"G -Xms"${RAM: -1}"G -jar server* nogui
+				java -Xmx"${RAM: -1}"G -Xms"${RAM: -1}"G -jar minecraft_server* nogui
 			fi
 			if [ ! -d "$worldDir" ];  then
 				whiptail --title "World" --msgbox "A new world will now be made." 8 78
 				clear
-				java  -Xmx"${RAM: -1}"G -Xms"${RAM: -1}"G -jar server* nogui
+				java  -Xmx"${RAM: -1}"G -Xms"${RAM: -1}"G -jar minecraft_server* nogui
 			fi
 		;;
 		"Delete World")
